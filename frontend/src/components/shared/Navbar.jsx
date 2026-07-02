@@ -45,9 +45,11 @@ const Navbar = () => {
                                 </>
                             ) : (
                                 <>
-                                    <li><Link to="/">Home</Link></li>
-                                    <li><Link to="/jobs">Jobs</Link></li>
-                                    <li><Link to="/browse">Browse</Link></li>
+                                    <li><Link onClick={() => setIsOpen(false)} to="/jobs">
+                                        Jobs
+                                    </Link></li>
+                                    <li><Link onClick={() => setIsOpen(false)} to="/jobs">Jobs</Link></li>
+                                    <li><Link onClick={() => setIsOpen(false)} to="/browse">Browse</Link></li>
                                 </>
                             )
                         }
@@ -111,7 +113,7 @@ const Navbar = () => {
             </div>
             {
                 isOpen && (
-                    <div className="md:hidden bg-white border-t shadow-lg">
+                    <div className="md:hidden bg-white border-t shadow-lg absolute left-0 w-full z-50">
                         <ul className="flex flex-col p-4 gap-4 font-medium">
 
                             {
@@ -194,6 +196,31 @@ const Navbar = () => {
                     </div>
                 )
             }
+            {
+                isOpen && (
+                    <div className="md:hidden bg-white border-t shadow-md">
+                        <ul className="flex flex-col gap-4 p-4 font-medium">
+
+                            {
+                                user && user.role === "recruiter" ? (
+                                    <>
+                                        <li><Link onClick={() => setIsOpen(false)} to="/admin/companies">Companies</Link></li>
+                                        <li><Link onClick={() => setIsOpen(false)} to="/admin/jobs">Jobs</Link></li>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li><Link onClick={() => setIsOpen(false)} to="/">Home</Link></li>
+                                        <li><Link onClick={() => setIsOpen(false)} to="/jobs">Jobs</Link></li>
+                                        <li><Link onClick={() => setIsOpen(false)} to="/browse">Browse</Link></li>
+                                    </>
+                                )
+                            }
+
+                        </ul>
+                    </div>
+                )
+            }
+
 
         </div>
     )
