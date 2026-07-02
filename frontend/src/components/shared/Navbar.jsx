@@ -59,11 +59,7 @@ const Navbar = () => {
                             <div className='hidden md:flex items-center gap-2'>
                                 <Link to="/login"><Button variant="outline">Login</Button></Link>
                                 <Link to="/signup"><Button className="bg-[#6A38C2] hover:bg-[#5b30a6]">Signup</Button></Link>
-                                <div className="md:hidden">
-                                    <button onClick={() => setIsOpen(!isOpen)}>
-                                        {isOpen ? <X size={28} /> : <Menu size={28} />}
-                                    </button>
-                                </div>
+
                             </div>
                         ) : (
                             <div className="hidden md:block">
@@ -105,6 +101,11 @@ const Navbar = () => {
                             </div>
                         )
                     }
+                    <div className="md:hidden">
+                        <button onClick={() => setIsOpen(!isOpen)}>
+                            {isOpen ? <X size={28} /> : <Menu size={28} />}
+                        </button>
+                    </div>
 
                 </div>
             </div>
