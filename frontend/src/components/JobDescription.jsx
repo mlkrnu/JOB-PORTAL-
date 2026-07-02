@@ -7,19 +7,24 @@ import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '@/utils/constant';
 import { setSingleJob } from '@/redux/jobSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 const JobDescription = () => {
     const { singleJob } = useSelector(store => store.job);
+
     const { user } = useSelector(store => store.auth);
+    const jobData = singleJob || initialJob;
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
+    const initialJob = location.state?.job;
     const { id: jobId } = useParams();
 
     const [isApplied, setIsApplied] = useState(false);
 
     useEffect(() => {
-        dispatch(setSingleJob(null));
+        dispatch(jobData?.(null));
         const fetchSingleJob = async () => {
             try {
                 const res = await axios.get(
@@ -27,7 +32,7 @@ const JobDescription = () => {
                 );
 
                 if (res.data.success) {
-                    dispatch(setSingleJob(res.data.job));
+                    dispatch(jobData?.(res.data.job));
 
                     if (user) {
                         setIsApplied(
@@ -67,7 +72,7 @@ const JobDescription = () => {
                     setSingleJob({
                         ...singleJob,
                         applications: [
-                            ...singleJob.applications,
+                            ...jobData?.applications,
                             { applicant: user._id },
                         ],
                     })
@@ -91,19 +96,19 @@ const JobDescription = () => {
         <div className="max-w-7xl mx-auto my-10">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="font-bold text-xl">{singleJob?.title}</h1>
+                    <h1 className="font-bold text-xl">{jobData?.title}</h1>
 
                     <div className="flex items-center gap-2 mt-4">
                         <Badge variant="ghost" className="text-blue-700 font-bold">
-                            {singleJob?.position} Positions
+                            {jobData?.position} Positions
                         </Badge>
 
                         <Badge variant="ghost" className="text-red-600 font-bold">
-                            {singleJob?.jobType}
+                            {jobData?.jobType}
                         </Badge>
 
                         <Badge variant="ghost" className="text-purple-700 font-bold">
-                            {singleJob?.salary} LPA
+                            {jobData?.salary} LPA
                         </Badge>
                     </div>
                 </div>
@@ -129,49 +134,49 @@ const JobDescription = () => {
                 <h1 className="font-bold">
                     Role:
                     <span className="pl-4 font-normal text-gray-800">
-                        {singleJob?.title}
+                        {jobData?.title}
                     </span>
                 </h1>
 
                 <h1 className="font-bold">
                     Location:
                     <span className="pl-4 font-normal text-gray-800">
-                        {singleJob?.location}
+                        {jobData?.location}
                     </span>
                 </h1>
 
                 <h1 className="font-bold">
                     Description:
                     <span className="pl-4 font-normal text-gray-800">
-                        {singleJob?.description}
+                        {jobData?.description}
                     </span>
                 </h1>
 
                 <h1 className="font-bold">
                     Experience:
                     <span className="pl-4 font-normal text-gray-800">
-                        {singleJob?.experienceLevel} yrs
+                        {jobData?.experienceLevel} yrs
                     </span>
                 </h1>
 
                 <h1 className="font-bold">
                     Salary:
                     <span className="pl-4 font-normal text-gray-800">
-                        {singleJob?.salary} LPA
+                        {jobData?.salary} LPA
                     </span>
                 </h1>
 
                 <h1 className="font-bold">
                     Total Applicants:
                     <span className="pl-4 font-normal text-gray-800">
-                        {singleJob?.applications?.length || 0}
+                        {jobData?.applications?.length || 0}
                     </span>
                 </h1>
 
                 <h1 className="font-bold">
                     Posted Date:
                     <span className="pl-4 font-normal text-gray-800">
-                        {singleJob?.createdAt?.split("T")[0]}
+                        {jobData?.createdAt?.split("T")[0]}
                     </span>
                 </h1>
             </div>
