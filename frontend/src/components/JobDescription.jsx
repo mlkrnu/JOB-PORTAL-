@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { useNavigate, useParams,useLocation } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '@/utils/constant';
 import { setSingleJob } from '@/redux/jobSlice';
@@ -10,20 +10,21 @@ import { toast } from 'sonner';
 
 const JobDescription = () => {
     const { singleJob } = useSelector(store => store.job);
-
     const { user } = useSelector(store => store.auth);
-    const jobData = singleJob || initialJob;
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const location = useLocation();
     const initialJob = location.state?.job;
+
+    const jobData = singleJob || initialJob;
     const { id: jobId } = useParams();
 
     const [isApplied, setIsApplied] = useState(false);
 
     useEffect(() => {
-        dispatch(jobData?.(null));
+        dispatch(setSingleJob(null));
         const fetchSingleJob = async () => {
             try {
                 const res = await axios.get(
@@ -31,7 +32,7 @@ const JobDescription = () => {
                 );
 
                 if (res.data.success) {
-                    dispatch(jobData?.(res.data.job));
+                    dispatch(setSingleJob(res.data.job));
 
                     if (user) {
                         setIsApplied(
