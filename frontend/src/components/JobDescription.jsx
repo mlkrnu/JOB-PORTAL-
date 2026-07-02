@@ -19,6 +19,7 @@ const JobDescription = () => {
     const [isApplied, setIsApplied] = useState(false);
 
     useEffect(() => {
+        dispatch(setSingleJob(null));
         const fetchSingleJob = async () => {
             try {
                 const res = await axios.get(
@@ -79,7 +80,13 @@ const JobDescription = () => {
             toast.error(error.response?.data?.message || "Something went wrong");
         }
     };
-
+    if (!singleJob) {
+        return (
+            <div className="max-w-7xl mx-auto my-10 text-center">
+                Loading...
+            </div>
+        );
+    }
     return (
         <div className="max-w-7xl mx-auto my-10">
             <div className="flex items-center justify-between">
