@@ -4,10 +4,10 @@ import { Badge } from './ui/badge'
 import { useSelector } from 'react-redux'
 
 const AppliedJobTable = () => {
-    const {allAppliedJobs} = useSelector(store=>store.job);
+    const { allAppliedJobs } = useSelector(store => store.job);
     return (
-        <div>
-            <Table>
+        <div className="overflow-x-auto">
+            <Table className="min-w-[700px]">
                 <TableCaption>A list of your applied jobs</TableCaption>
                 <TableHeader>
                     <TableRow>
@@ -19,7 +19,11 @@ const AppliedJobTable = () => {
                 </TableHeader>
                 <TableBody>
                     {
-                        allAppliedJobs.length <= 0 ? <span>You haven't applied any job yet.</span> : allAppliedJobs.map((appliedJob) => (
+                        allAppliedJobs.length <= 0 ? <TableRow>
+                            <TableCell colSpan={4} className="text-center">
+                                You haven't applied any job yet.
+                            </TableCell>
+                        </TableRow> : allAppliedJobs.map((appliedJob) => (
                             <TableRow key={appliedJob._id}>
                                 <TableCell>{appliedJob?.createdAt?.split("T")[0]}</TableCell>
                                 <TableCell>{appliedJob.job?.title}</TableCell>

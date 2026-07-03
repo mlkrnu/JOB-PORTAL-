@@ -21,9 +21,9 @@ const Profile = () => {
     return (
         <div>
             <Navbar />
-            <div className='max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-5 p-8'>
-                <div className='flex justify-between'>
-                    <div className='flex items-center gap-4'>
+            <div className='max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-5 p-4 md:p-8 mx-4 md:mx-auto'>
+                <div className='flex flex-col md:flex-row md:justify-between gap-4'>
+                    <div className='flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left'>
                         <Avatar className="h-24 w-24">
                             <AvatarImage src={user?.profile?.profilePhoto} alt="profile"
                             />
@@ -47,7 +47,7 @@ const Profile = () => {
                 </div>
                 <div className='my-5'>
                     <h1>Skills</h1>
-                    <div className='flex items-center gap-1'>
+                    <div className='flex flex-wrap gap-2 mt-2'>
                         {
                             user?.profile?.skills.length !== 0 ? user?.profile?.skills.map((item, index) => <Badge key={index}>{item}</Badge>) : <span>NA</span>
                         }
@@ -60,7 +60,7 @@ const Profile = () => {
                     }
                 </div>
             </div>
-            <div className='max-w-4xl mx-auto bg-white rounded-2xl'>
+            <div className='max-w-4xl mx-auto bg-white rounded-2xl mx-4 md:mx-auto overflow-x-auto'>
                 <h1 className='font-bold text-lg my-5'>Applied Jobs</h1>
                 {/* Applied Job Table   */}
                 <AppliedJobTable />
