@@ -103,7 +103,13 @@ const Navbar = () => {
                             </div>
                         )
                     }
-                    <div className="md:hidden">
+                    <div className="md:hidden flex items-center gap-3">
+                        {user && (
+                            <Avatar className="h-9 w-9">
+                                <AvatarImage src={user?.profile?.profilePhoto} />
+                            </Avatar>
+                        )}
+
                         <button onClick={() => setIsOpen(!isOpen)}>
                             {isOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>
