@@ -31,11 +31,14 @@ const CategoryCarousel = () => {
                                 key={index}
                                 className="basis-full sm:basis-1/2 lg:basis-1/3"
                             >
+                               
                                 <Button
                                     onClick={() => searchJobHandler(cat)}
                                     variant="outline"
                                     className="rounded-full w-full"
-                                ></Button>
+                                >
+                                    {cat}
+                                </Button>
                             </CarouselItem>
                         ))
                     }
