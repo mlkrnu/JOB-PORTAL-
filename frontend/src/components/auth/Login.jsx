@@ -18,7 +18,7 @@ const Login = () => {
         password: "",
         role: "",
     });
-    const { loading,user } = useSelector(store => store.auth);
+    const { loading, user } = useSelector(store => store.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -48,11 +48,11 @@ const Login = () => {
             dispatch(setLoading(false));
         }
     }
-    useEffect(()=>{
-        if(user){
+    useEffect(() => {
+        if (user) {
             navigate("/");
         }
-    },[])
+    }, [])
     return (
         <div>
             <Navbar />
@@ -81,28 +81,29 @@ const Login = () => {
                         />
                     </div>
                     <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between'>
-                        <RadioGroup className="flex flex-col sm:flex-row sm:items-center gap-4 my-5">
-                            <div className="flex items-center space-x-2">
-                                <Input
+                        <RadioGroup className="flex flex-col sm:flex-row gap-4 my-5">
+                            <div className="flex items-center gap-2">
+                                <input
                                     type="radio"
                                     name="role"
                                     value="student"
-                                    checked={input.role === 'student'}
+                                    checked={input.role === "student"}
                                     onChange={changeEventHandler}
-                                    className="cursor-pointer"
+                                    className="h-4 w-4 cursor-pointer"
                                 />
-                                <Label htmlFor="r1">student</Label>
+                                <Label>Student</Label>
                             </div>
-                            <div className="flex items-center space-x-2">
-                                <Input
+
+                            <div className="flex items-center gap-2">
+                                <input
                                     type="radio"
                                     name="role"
                                     value="recruiter"
-                                    checked={input.role === 'recruiter'}
+                                    checked={input.role === "recruiter"}
                                     onChange={changeEventHandler}
-                                    className="cursor-pointer"
+                                    className="h-4 w-4 cursor-pointer"
                                 />
-                                <Label htmlFor="r2">Recruiter</Label>
+                                <Label>Recruiter</Label>
                             </div>
                         </RadioGroup>
                     </div>
