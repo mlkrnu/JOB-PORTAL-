@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 const AppliedJobTable = () => {
     const { allAppliedJobs } = useSelector(store => store.job);
     return (
-        return (
         <div className="overflow-x-auto">
             <div className="min-w-[650px]">
                 <Table>
