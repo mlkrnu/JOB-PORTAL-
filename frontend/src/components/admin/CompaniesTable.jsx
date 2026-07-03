@@ -21,8 +21,8 @@ const CompaniesTable = () => {
         setFilterCompany(filteredCompany);
     },[companies,searchCompanyByText])
     return (
-        <div>
-            <Table>
+        <div className="overflow-x-auto">
+            <Table className="min-w-[650px]">
                 <TableCaption>A list of your recent registered companies</TableCaption>
                 <TableHeader>
                     <TableRow>
@@ -35,9 +35,9 @@ const CompaniesTable = () => {
                 <TableBody>
                     {
                         filterCompany?.map((company) => (
-                            <tr>
+                            <TableRow key={company._id}>
                                 <TableCell>
-                                    <Avatar>
+                                    <Avatar className="h-10 w-10">
                                         <AvatarImage src={company.logo}/>
                                     </Avatar>
                                 </TableCell>
@@ -54,7 +54,7 @@ const CompaniesTable = () => {
                                         </PopoverContent>
                                     </Popover>
                                 </TableCell>
-                            </tr>
+                            </TableRow>
 
                         ))
                     }

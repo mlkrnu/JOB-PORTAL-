@@ -21,7 +21,7 @@ const CompanySetup = () => {
         location: "",
         file: null
     });
-    const {singleCompany} = useSelector(store=>store.company);
+    const { singleCompany } = useSelector(store => store.company);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -72,21 +72,25 @@ const CompanySetup = () => {
             location: singleCompany.location || "",
             file: singleCompany.file || null
         })
-    },[singleCompany]);
+    }, [singleCompany]);
 
     return (
         <div>
             <Navbar />
-            <div className='max-w-xl mx-auto my-10'>
+            <div className='max-w-xl mx-auto my-10 px-4'>
                 <form onSubmit={submitHandler}>
-                    <div className='flex items-center gap-5 p-8'>
-                        <Button onClick={() => navigate("/admin/companies")} variant="outline" className="flex items-center gap-2 text-gray-500 font-semibold">
+                    <div className='flex flex-col sm:flex-row sm:items-center gap-4 py-6'>
+                        <Button
+                            onClick={() => navigate("/admin/companies")}
+                            variant="outline"
+                            className="w-full sm:w-auto flex items-center justify-center gap-2 text-gray-500 font-semibold"
+                        >
                             <ArrowLeft />
                             <span>Back</span>
                         </Button>
                         <h1 className='font-bold text-xl'>Company Setup</h1>
                     </div>
-                    <div className='grid grid-cols-2 gap-4'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <div>
                             <Label>Company Name</Label>
                             <Input

@@ -27,8 +27,8 @@ const ApplicantsTable = () => {
     }
 
     return (
-        <div>
-            <Table>
+        <div className="overflow-x-auto">
+            <Table className="min-w-[850px]">
                 <TableCaption>A list of your recent applied user</TableCaption>
                 <TableHeader>
                     <TableRow>
@@ -43,7 +43,7 @@ const ApplicantsTable = () => {
                 <TableBody>
                     {
                         applicants && applicants?.applications?.map((item) => (
-                            <tr key={item._id}>
+                            <TableRow key={item._id}>
                                 <TableCell>{item?.applicant?.fullname}</TableCell>
                                 <TableCell>{item?.applicant?.email}</TableCell>
                                 <TableCell>{item?.applicant?.phoneNumber}</TableCell>
@@ -53,7 +53,7 @@ const ApplicantsTable = () => {
                                     }
                                 </TableCell>
                                 <TableCell>{item?.applicant.createdAt.split("T")[0]}</TableCell>
-                                <TableCell className="float-right cursor-pointer">
+                                <TableCell className="text-right cursor-pointer">
                                     <Popover>
                                         <PopoverTrigger>
                                             <MoreHorizontal />
@@ -73,7 +73,7 @@ const ApplicantsTable = () => {
 
                                 </TableCell>
 
-                            </tr>
+                            </TableRow>
                         ))
                     }
 
