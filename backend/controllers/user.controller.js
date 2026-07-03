@@ -96,7 +96,7 @@ export const login = async (req, res) => {
             maxAge: 1 * 24 * 60 * 60 * 1000,
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
         }).json({
             message: `Welcome back ${user.fullname}`,
             user,
