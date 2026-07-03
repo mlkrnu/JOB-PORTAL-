@@ -31,7 +31,7 @@ const CategoryCarousel = () => {
                                 key={index}
                                 className="basis-full sm:basis-1/2 lg:basis-1/3"
                             >
-                               
+
                                 <Button
                                     onClick={() => searchJobHandler(cat)}
                                     variant="outline"
@@ -43,8 +43,8 @@ const CategoryCarousel = () => {
                         ))
                     }
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="left-2 flex" />
+                <CarouselNext className="right-2 flex" />
             </Carousel>
         </div>
     )
