@@ -43,8 +43,8 @@ const CategoryCarousel = () => {
                         ))
                     }
                 </CarouselContent>
-                <CarouselPrevious className="left-2 flex" />
-                <CarouselNext className="right-2 flex" />
+                <CarouselPrevious className="left-[-15px] sm:left-[-45px]" />
+                <CarouselNext className="right-[-15px] sm:right-[-45px]" />
             </Carousel>
         </div>
     )
