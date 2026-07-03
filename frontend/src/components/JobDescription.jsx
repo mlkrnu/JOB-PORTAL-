@@ -93,12 +93,12 @@ const JobDescription = () => {
         );
     }
     return (
-        <div className="max-w-7xl mx-auto my-10">
-            <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto my-10 px-4">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
                 <div>
-                    <h1 className="font-bold text-xl">{jobData?.title}</h1>
+                    <h1 className="font-bold text-xl md:text-2xl">{jobData?.title}</h1>
 
-                    <div className="flex items-center gap-2 mt-4">
+                    <div className="flex flex-wrap items-center gap-2 mt-4">
                         <Badge variant="ghost" className="text-blue-700 font-bold">
                             {jobData?.position} Positions
                         </Badge>
@@ -116,11 +116,10 @@ const JobDescription = () => {
                 <Button
                     onClick={applyJobHandler}
                     disabled={isApplied}
-                    className={
-                        isApplied
+                    className={`w-full md:w-auto ${isApplied
                             ? "bg-gray-600 cursor-not-allowed"
                             : "bg-[#7209b7] hover:bg-[#5f32ad]"
-                    }
+                        }`}
                 >
                     {isApplied ? "Already Applied" : "Apply Now"}
                 </Button>

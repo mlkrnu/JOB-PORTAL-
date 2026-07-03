@@ -14,24 +14,23 @@ const Jobs = () => {
     useEffect(() => {
         if (searchedQuery) {
             const filteredJobs = allJobs.filter((job) => {
-    const query = searchedQuery.toLowerCase();
-    const salary = Number(job.salary);
+                const query = searchedQuery.toLowerCase();
+                const salary = Number(job.salary);
 
-    const textMatch =
-        job.title.toLowerCase().includes(query) ||
-        job.description.toLowerCase().includes(query) ||
-        job.location.toLowerCase().includes(query);
+                const textMatch =
+                    job.title.toLowerCase().includes(query) ||
+                    job.description.toLowerCase().includes(query) ||
+                    job.location.toLowerCase().includes(query);
 
-    const salaryMatch =
-        (searchedQuery === "0-10LPA" && salary >= 0 && salary <= 10) ||
-        (searchedQuery === "11-20LPA" && salary >= 11 && salary <= 20) ||
-        (searchedQuery === "21LPA to 30LPA" && salary >= 21 && salary <= 30);
+                const salaryMatch =
+                    (searchedQuery === "0-10LPA" && salary >= 0 && salary <= 10) ||
+                    (searchedQuery === "11-20LPA" && salary >= 11 && salary <= 20) ||
+                    (searchedQuery === "21LPA to 30LPA" && salary >= 21 && salary <= 30);
 
-    return textMatch || salaryMatch;
-});
+                return textMatch || salaryMatch;
+            });
 
-setFilterJobs(filteredJobs);
-            setFilterJobs(filteredJobs)
+            setFilterJobs(filteredJobs);
         } else {
             setFilterJobs(allJobs)
         }
@@ -40,15 +39,15 @@ setFilterJobs(filteredJobs);
     return (
         <div>
             <Navbar />
-            <div className='max-w-7xl mx-auto mt-5'>
-                <div className='flex gap-5'>
-                    <div className='w-20%'>
+            <div className='max-w-7xl mx-auto mt-5 px-4'>
+                <div className='flex flex-col lg:flex-row gap-5'>
+                    <div className='w-full lg:w-[22%]'>
                         <FilterCard />
                     </div>
                     {
                         filterJobs.length <= 0 ? <span>Job not found</span> : (
                             <div className='flex-1 h-[88vh] overflow-y-auto pb-5'>
-                                <div className='grid grid-cols-3 gap-4'>
+                                <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
                                     {
                                         filterJobs.map((job) => (
                                             <motion.div
